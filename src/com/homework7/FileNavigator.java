@@ -27,7 +27,6 @@ public class FileNavigator {
         } catch (NoSuchPathException e) {
             e.printStackTrace();
         }
-        System.out.println("Initial map: " + map);
     }
 
     //method find
