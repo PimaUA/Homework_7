@@ -4,12 +4,7 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class FileNavigator {
-    static Map<Path, List<FileData>> map = new HashMap<>();
-    private final FileData fileData;
-
-    public FileNavigator(FileData fileData) {
-        this.fileData = fileData;
-    }
+    private final Map<Path, List<FileData>> map = new HashMap<>();
 
     //method add
     void add(Path filePathKey, FileData fileData) {
@@ -30,13 +25,12 @@ public class FileNavigator {
     }
 
     //method find
-    void find(Path filePath) {
-        Collection<FileData> collectionOfValues = map.get(filePath);
-        System.out.println("Files found: " + collectionOfValues);
+    Collection<FileData> find(Path filePath) {
+        return map.get(filePath);
     }
 
     //method filterBySize
-    void filterBySize(long checkedFileSize) {
+    Collection<FileData> filterBySize(long checkedFileSize) {
         Collection<List<FileData>> allValuesCollection = map.values();
         Collection<FileData> filesCollection = new ArrayList<>();
         for (List<FileData> element : allValuesCollection) {
@@ -46,23 +40,21 @@ public class FileNavigator {
                 }
             }
         }
-        System.out.println("Filtered by provided size: " + filesCollection);
+        return filesCollection;
     }
 
     //remove method
-    void remove(Path path) {
-        Collection<FileData> collectionRemoved = map.remove(path);
-        System.out.println("Removed files by path: " + collectionRemoved);
-        System.out.println("Map after remove" + map);
+    Collection<FileData> remove(Path path) {
+        return map.remove(path);
     }
 
     //sort method
-    void sortBySize() {
+    Collection<FileData> sortBySize() {
         Collection<List<FileData>> allValuesCollection = map.values();
         TreeSet<FileData> collectionBySize = new TreeSet<>(new FileComparator());
         for (List<FileData> element : allValuesCollection) {
             collectionBySize.addAll(element);
         }
-        System.out.println("Sorted by Size: " + collectionBySize);
+        return collectionBySize;
     }
 }

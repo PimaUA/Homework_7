@@ -5,27 +5,25 @@ import java.nio.file.Paths;
 public class Main {
 
     public static void main(String[] args) {
-
         FileData file1 = new FileData("file1.txt", 18, Paths.get("src/firstFolder"));
-        FileData file2 = new FileData("file2.txt", 5, Paths.get("src/firstFolder"));
-        FileData file3 = new FileData("file3.txt", 14, Paths.get("src/firstFolder"));
-        FileData file4 = new FileData("file4.txt", 6, Paths.get("src/secondFolder"));
-        FileData file5 = new FileData("file5.txt", 5, Paths.get("src/secondFolderxxx"));
-        FileNavigator newFile = new FileNavigator(file1);
-        FileNavigator newFile2 = new FileNavigator(file2);
-        FileNavigator newFile3 = new FileNavigator(file3);
-        FileNavigator newFile4 = new FileNavigator(file4);
-        FileNavigator newFile5 = new FileNavigator(file5);
+        FileData file2 = new FileData("file2.txt", 8, Paths.get("src/firstFolder"));
+        FileData file3 = new FileData("file3.txt", 14, Paths.get("src/firstFolderxx"));
+        FileData file4 = new FileData("file4.txt", 12, Paths.get("src/secondFolder"));
+        FileData file5 = new FileData("file5.txt", 5, Paths.get("src/secondFolder"));
+        FileData file6 = new FileData("file6.txt", 7, Paths.get("src/secondFolder"));
+        FileNavigator fileNavigator = new FileNavigator();
+        FileNavigator fileNavigator2 = new FileNavigator();
 
-        newFile.add(Paths.get("src/firstFolder"), file1);
-        newFile2.add(Paths.get("src/firstFolder"), file2);
-        newFile3.add(Paths.get("src/firstFolder"), file3);
-        newFile4.add(Paths.get("src/secondFolder"), file4);
-        newFile5.add(Paths.get("src/secondFolder"), file5);
+        fileNavigator.add(Paths.get("src/firstFolder"), file1);
+        fileNavigator2.add(Paths.get("src/firstFolder"), file2);
+        fileNavigator.add(Paths.get("src/firstFolder"), file3);
+        fileNavigator2.add(Paths.get("src/secondFolder"), file4);
+        fileNavigator.add(Paths.get("src/secondFolder"), file5);
+        fileNavigator2.add(Paths.get("src/secondFolder"), file6);
 
-        newFile3.find(Paths.get("src/firstFolder"));
-        newFile4.filterBySize(10);
-        newFile5.sortBySize();
-        newFile5.remove(Paths.get("src/firstFolder"));
+        System.out.println(fileNavigator2.find(Paths.get("src/secondFolder")));
+        System.out.println(fileNavigator.filterBySize(10));
+        System.out.println(fileNavigator.sortBySize());
+        System.out.println(fileNavigator.remove(Paths.get("src/firstFolder")));
     }
 }
